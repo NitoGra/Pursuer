@@ -13,6 +13,8 @@ public class Player : Movement
     [SerializeField] private float _maxVerticalAngle = 80f;
     private float _verticalLookRotation = 0f;
 
+    private void Start() => Cursor.lockState = CursorLockMode.Locked;
+
     private void FixedUpdate()
     {
         HandleRotation();
