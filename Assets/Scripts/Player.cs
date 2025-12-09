@@ -34,9 +34,6 @@ public class Player : Movement
 
     private void HandleMovement()
     {
-        if (Rb == null)
-            return;
-
         if (MoveInput == Vector2.zero)
         {
             Rb.linearVelocity = new Vector3(0f, Rb.linearVelocity.y, 0f);

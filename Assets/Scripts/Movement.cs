@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 public abstract class Movement : MonoBehaviour
 {
     private InputSystem_Actions _inputs;
-    protected Rigidbody Rb;
     protected Vector2 Look;
     protected Vector2 MoveInput;
+    protected Rigidbody Rb;
 
     private void Awake()
     {
