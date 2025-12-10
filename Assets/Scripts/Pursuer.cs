@@ -1,22 +1,30 @@
 ﻿using UnityEngine;
 
-public class Pursuer : MonoBehaviour
+namespace Scripts
 {
-    [SerializeField] private Transform _target;
-    [SerializeField] private float _moveSpeed = 3f;
-    private Rigidbody _rb;
-
-    private void FixedUpdate() => HandleMovement();
-    private void Awake() => _rb = gameObject.GetComponent<Rigidbody>();
-
-    private void HandleMovement()
+    [RequireComponent(typeof(Rigidbody))]
+    internal class Pursuer : MonoBehaviour
     {
-        if (Vector3.Distance(transform.position, _target.transform.position) < 3)
-            return;
-        Vector3 direction = _target.transform.position - transform.position;
-        direction.Normalize();
-        Vector3 movement = direction * _moveSpeed;
+        private const float MinDistanceToPlayer = 3f;
 
-        _rb.linearVelocity = new Vector3(movement.x, _rb.linearVelocity.y, movement.z);
+        [SerializeField] private Transform _target;
+        [SerializeField] private Rigidbody _rigidbody;
+        [SerializeField] private float _moveSpeed = 3f;
+
+        private void FixedUpdate()
+        {
+            HandleMovement();
+        }
+
+        private void HandleMovement()
+        {
+            if (Vector3.Distance(transform.position, _target.transform.position) < MinDistanceToPlayer)
+                return;
+
+            Vector3 direction = (_target.transform.position - transform.position).normalized;
+            Vector3 movement = direction * _moveSpeed;
+
+            _rigidbody.linearVelocity = new Vector3(movement.x, _rigidbody.linearVelocity.y, movement.z);
+        }
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace Scripts
 {
+    [RequireComponent(typeof(Rigidbody))]
     internal class Player : MonoBehaviour
     {
         private const float MoveCameraDelta = 0.1f;
@@ -20,7 +21,6 @@ namespace Scripts
 
         private float _verticalLookRotation = 0f;
         private InputSystem _inputSystem;
-
 
         private void Awake()
         {
